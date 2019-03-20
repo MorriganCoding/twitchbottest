@@ -17,7 +17,7 @@ const opts = {
   ]
 };
 
-const rainfallLink = '';
+const rainfallLink = 'https://www.twitch.tv/vivnoms';
 
 // Create a client with our options
 const client = new tmi.client(opts);
@@ -57,6 +57,10 @@ function onMessageHandler (target, context, msg, self) {
   }
   else if (commandName == '!modtest' && context.mod) {
     client.say(target, `This is a mod only command.`);
+    console.log(`* Executed ${commandName} command`);
+  }
+  else if (commandName == '!linktest') {
+    client.say(target, `This is awesome! ${rainfallLink}`);
     console.log(`* Executed ${commandName} command`);
   }
   else {
