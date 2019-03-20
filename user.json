@@ -1,0 +1,19 @@
+{
+  badges: { moderator: '1' },
+ color: '#8A2BE2',
+ 'display-name': 'CoolDisplayName',
+ emotes: null,
+ flags: null,
+ id: '12345678-90ab-cdef-ghij-klmnopqrstuv',
+ mod: true,
+ 'room-id': '123456789',
+ subscriber: false,
+ 'tmi-sent-ts': '1234567890123',
+ turbo: false,
+ 'user-id': '123456789',
+ 'user-type': 'mod',
+ 'emotes-raw': null,
+ 'badges-raw': 'moderator/1',
+ username: 'randomname',
+ 'message-type': 'chat'
+}
