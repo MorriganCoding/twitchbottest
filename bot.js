@@ -7,9 +7,17 @@ const opts = {
     password: process.env.OAUTH_TOKEN
   },
   channels: [
-    process.env.CHANNEL_NAME
+    'alfakynah',
+    'vivnoms',
+    'maketheinternetvomit',
+    'diggalicious'
   ]
+  // channels: [
+  //   process.env.CHANNEL_NAME
+  // ]
 };
+
+const rainfallLink = '';
 
 // Create a client with our options
 const client = new tmi.client(opts);
@@ -30,22 +38,26 @@ function onMessageHandler (target, context, msg, self) {
 
   // If the command is known, let's execute it
   if (commandName === '!testbot') {
-    client.say(target, 'Don\'t mind me. I\'m just in test mode.');
-    //const num = rollDice();
-    //client.say(target, `You rolled a ${num}`);
-    //console.log(`* Executed ${commandName} command`);
-  //} else {
-    //console.log(`* Unknown command ${commandName}`);
+    client.say(target, 'Don\'t mind me, I\'m just testing some things.');
+    console.log(`* Executed ${commandName} command`);
+  }
+  if (commandName == '!dice') {
+    const num = rollDice();
+    client.say(target, `You rolled a ${num}`);
+    console.log(`* Executed ${commandName} command`);
+  } else {
+    console.log(`* Unknown command ${commandName}`);
   }
 }
 
 // Function called when the "dice" command is issued
 function rollDice () {
-  const sides = 6;
+  const sides = 20;
   return Math.floor(Math.random() * sides) + 1;
 }
 
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
+  console.log(opts.channels);
 }
