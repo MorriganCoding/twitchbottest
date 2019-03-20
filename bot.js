@@ -6,15 +6,15 @@ const opts = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN
   },
-  channels: [
+  /*channels: [
     'alfakynah',
     'vivnoms',
     'maketheinternetvomit',
     'diggalicious'
+  ]*/
+  channels: [
+    process.env.CHANNEL_NAME
   ]
-  // channels: [
-  //   process.env.CHANNEL_NAME
-  // ]
 };
 
 const rainfallLink = '';
@@ -32,20 +32,34 @@ client.connect();
 // Called every time a message comes in
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
+  console.log(`* Called from channel: ${target}`);
+  console.log(`* Called by user: ${context.username}`);
+  console.log(`* Called by mod? ${context.mod}`);
+  console.log(`* Message: ${msg}`);
+  console.log(`* Self: ${self}`);
 
   // Remove whitespace from chat message
   const commandName = msg.trim();
 
   // If the command is known, let's execute it
-  if (commandName === '!testbot') {
+  if (commandName == '!testbot') {
     client.say(target, 'Don\'t mind me, I\'m just testing some things.');
     console.log(`* Executed ${commandName} command`);
   }
-  if (commandName == '!dice') {
+  else if (commandName == '!dice') {
     const num = rollDice();
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
-  } else {
+  }
+  else if (commandName == '!greetme') {
+    client.say(target, `Hello ${context.username}, your are a ${context['user-type']} on this channel`);
+    console.log(`* Executed ${commandName} command`);
+  }
+  else if (commandName == '!modtest' && context.mod) {
+    client.say(target, `This is a mod only command.`);
+    console.log(`* Executed ${commandName} command`);
+  }
+  else {
     console.log(`* Unknown command ${commandName}`);
   }
 }
